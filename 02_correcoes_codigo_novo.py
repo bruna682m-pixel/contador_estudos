@@ -1,7 +1,11 @@
 # %%
-dias_estudo = 0
+
+
+dias_estudados = 0
 meta = 30
 resto_meta = 0
+progresso = 0
+subtracao_dias_estudados = 0
 
 while True:
     opcao = int(input("""
@@ -21,12 +25,12 @@ Dias estudados: 0
     if opcao == 1:
         print("Você estudou hoje!")
 
-        dias_estudo += 1
+        dias_estudados += 1
 
-        print("Dias estudados:",dias_estudo)
+        print("Dias estudados:",dias_estudados)
 
     elif opcao == 2:
-        print("Você já estudou programação por:",dias_estudo,"dias.")
+        print("Você já estudou programação por:",dias_estudados,"dias.")
 
 
     elif opcao == 3:
@@ -34,24 +38,29 @@ Dias estudados: 0
         break
 
     elif opcao == 4:
-        print("Dias estudados:",dias_estudo)
+        print("Dias estudados:",dias_estudados)
+        for i in range(1, dias_estudados+1):
+            print("Dia",i,"✓.")
 
-        for i in range(1, dias_estudo+1):
-            print("Dia",i,"check.")
+        subtracao_dias_estudados = meta - dias_estudados
+        print(subtracao_dias_estudados,"/",meta)
 
     elif opcao == 5:
-        resto_meta = meta - dias_estudo
+        resto_meta = meta - dias_estudados
+        progresso = dias_estudados / 30
+        progresso = progresso * 100
 
         print(f"""
 =============================
         Meta: {meta}
-=============================
+=============================F
 
-Dias estudados: {dias_estudo}
+Dias estudados: {dias_estudados}
 Faltam: {resto_meta}
+Progresso: {progresso}%
 """)
 
-        if meta == resto_meta:
+        if dias_estudados >= meta:
             print("Atigiu meta.")
         else:
             print("Faltam:",resto_meta,"dias.")
@@ -60,8 +69,3 @@ Faltam: {resto_meta}
         print("Opção inavalida.")
 
 
-
-
-
-
-# %%

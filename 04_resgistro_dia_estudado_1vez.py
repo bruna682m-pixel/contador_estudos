@@ -1,18 +1,10 @@
 # %%
 import datetime
+ultimo_dia_estudado = 0
+historico_dias_estudados = []
 
-data_atual = datetime.date.today()
-data_atual_formatada = data_atual.strftime("%d/%m/%y")
-print(data_atual_formatada)
-
-numero_semana = datetime.datetime.now().isoweekday()
-print(numero_semana)
-
-if numero_semana != 6 and numero_semana != 7:
-    print("dia de estudar.")
-else:
-    print("fim de semana")
-
+#data_atual_formatada = data_atual.strftime('%d/%m/%Y')
+#print(data_atual_formatada)
 
 dias_estudados = 0
 meta = 30
@@ -21,6 +13,9 @@ progresso = 0
 subtracao_dias_estudados = 0
 
 while True:
+    data_atual = datetime.date.today()
+    numero_semana = data_atual.isoweekday()
+
     opcao = int(input("""
 ======================================
          DIÀRIO DE PYTHON
@@ -36,11 +31,18 @@ Dias estudados: 0
 
 """))
     if opcao == 1:
-        print("Você estudou hoje!")
-
-        dias_estudados += 1
-
-        print("Dias estudados:",dias_estudados)
+        if numero_semana != 6 and numero_semana != 7:
+            print("dia de estudar.")
+            if ultimo_dia_estudado == data_atual:
+                print("Você já registrou o estudo de hoje.")
+            else:
+                dias_estudados += 1
+                historico_dias_estudados.append(data_atual)
+                print("Dias estudados:",dias_estudados)
+                ultimo_dia_estudado = data_atual
+        else:
+            print("Hoje é dia livre.")
+        
 
     elif opcao == 2:
         print("Você já estudou programação por:",dias_estudados,"dias.")
@@ -52,7 +54,7 @@ Dias estudados: 0
 
     elif opcao == 4:
         print("Dias estudados:",dias_estudados)
-        for i in range(1, dias_estudados+1):
+        for i in historico_dias_estudados:
             print("Dia",i,"✓.")
 
         subtracao_dias_estudados = meta - dias_estudados
@@ -66,7 +68,7 @@ Dias estudados: 0
         print(f"""
 =============================
         Meta: {meta}
-==============================
+=============================F
 
 Dias estudados: {dias_estudados}
 Faltam: {resto_meta}
@@ -80,3 +82,5 @@ Progresso: {progresso}%
 
     else:
         print("Opção inavalida.")
+
+
