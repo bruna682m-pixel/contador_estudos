@@ -84,29 +84,32 @@ Progresso: {progresso}%
             print("Faltam:",resto_meta,"dias.")
 
     elif opcao == 6:
-            sequencia = 0
-            data_atual = datetime.date.today()
+            if historico_dias_estudados == []:
+                print("Ainda não há estudos registrados.")
+            else:
+                ultimo_dia = historico_dias_estudados[-1]
 
-            proxima_data = data_atual + datetime.timedelta(days=1)
+                sequencia = 1
 
-            while True:
-                numero_semana = proxima_data.isoweekday()
+                proxima_data = ultimo_dia + datetime.timedelta(days= -1)
 
-                if numero_semana == 6 or numero_semana == 7:
-                    proxima_data = proxima_data + datetime.timedelta(days=1)
-                else:
-                    break
+                while True:
+                    numero_semana = proxima_data.isoweekday()
 
-                for i in historico_dias_estudados:
-                    if proxima_data in historico_dias_estudados:
-                        sequencia +=1
+                    if numero_semana == 6 or numero_semana == 7:
+                        proxima_data = proxima_data + datetime.timedelta(days=1)
+                    else:
+                        if proxima_data in historico_dias_estudados:
+                            sequencia +=1
+                            proxima_data = proxima_data + datetime.timedelta(days=1)
+                        else:
+                            break
+        
+                print("sequencia=",sequencia)
 
 
-                print(sequencia)
-
-
-            print("Hoje:", data_atual)
-            print("Próximo dia de estudo:", proxima_data)
+                print("Hoje:", data_atual)
+                print("Próximo dia de estudo:", proxima_data)
                 
 
 
