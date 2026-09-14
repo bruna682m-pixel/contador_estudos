@@ -89,13 +89,12 @@ Progresso: {progresso}%
             else:
                 data_atual = datetime.date.today()
 
-                sequencia = 1
+                sequencia = 0
 
                 dia_anterior = data_atual + datetime.timedelta(days= -1)
 
                 if data_atual in historico_dias_estudados:
                     sequencia += 1
-                    dia_anterior = dia_anterior + datetime.timedelta(days= -1)
 
                 while True:
                     numero_semana = dia_anterior.isoweekday()
