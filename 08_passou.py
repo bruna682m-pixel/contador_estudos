@@ -100,15 +100,19 @@ Progresso: {progresso}%
                     numero_semana = dia_anterior.isoweekday()
 
                     if numero_semana == 6 or numero_semana == 7:
-                         dia_anterior = dia_anterior + datetime.timedelta(days= -1)
+                        if dia_anterior in historico_dias_estudados:
+                            dia_anterior = dia_anterior + datetime.timedelta(days= -1)
+                            sequencia +=1
                     else:
                         if dia_anterior in historico_dias_estudados:
-                            sequencia +=1
                             dia_anterior = dia_anterior + datetime.timedelta(days= -1)
+                            sequencia += 1
                         else:
                             break
+      
+                       
         
-                print("Sequencia atual:",sequencia, "dia(s)")
+                    print("Sequencia atual:",sequencia, "dia(s)")
 
 
                 
