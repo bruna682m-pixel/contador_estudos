@@ -1,7 +1,10 @@
 # %%
 import datetime
 ultimo_dia_estudado = 0
-historico_dias_estudados = []
+historico_dias_estudados = [
+    datetime.date(2026, 9, 11),
+    datetime.date(2026, 9, 14)
+]
 
 #data_atual_formatada = data_atual.strftime('%d/%m/%Y')
 #print(data_atual_formatada)
@@ -87,7 +90,7 @@ Progresso: {progresso}%
             if historico_dias_estudados == []:
                 print("Ainda não há estudos registrados.")
             else:
-                data_atual = datetime.date.today()
+                data_atual = datetime.date(2026, 9, 14)
 
                 sequencia = 0
 
@@ -101,8 +104,9 @@ Progresso: {progresso}%
 
                     if numero_semana == 6 or numero_semana == 7:
                         if dia_anterior in historico_dias_estudados:
-                            dia_anterior = dia_anterior + datetime.timedelta(days= -1)
                             sequencia +=1
+
+                        dia_anterior = dia_anterior + datetime.timedelta(days= -1)
                     else:
                         if dia_anterior in historico_dias_estudados:
                             dia_anterior = dia_anterior + datetime.timedelta(days= -1)
@@ -112,7 +116,7 @@ Progresso: {progresso}%
       
                        
         
-                    print("Sequencia atual:",sequencia, "dia(s)")
+                print("Sequencia atual:",sequencia, "dia(s)")
 
 
                 
