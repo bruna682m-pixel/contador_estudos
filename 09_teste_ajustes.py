@@ -1,30 +1,25 @@
 # %%
 import datetime
-ultimo_dia_estudado = 0
+
 historico_dias_estudados = [
-    datetime.date(2026, 9, 11),
-    datetime.date(2026, 9, 14)
+    
 ]
 
 #data_atual_formatada = data_atual.strftime('%d/%m/%Y')
 #print(data_atual_formatada)
 
-dias_estudados = 0
+
 meta = 30
-resto_meta = 0
-progresso = 0
-subtracao_dias_estudados = 0
 
 while True:
     data_atual = datetime.date.today()
-    numero_semana = data_atual.isoweekday()
 
-    opcao = int(input("""
+    opcao = int(input(f"""
 ======================================
          DIÀRIO DE PYTHON
 ======================================
 
-Dias estudados: 0
+Dias estudados: {len(historico_dias_estudados)}
 
 1- Registrar estudo
 2- Ver dias estudados
@@ -34,21 +29,15 @@ Dias estudados: 0
 
 """))
     if opcao == 1:
-        if numero_semana != 6 and numero_semana != 7:
-            print("dia de estudar.")
-            if ultimo_dia_estudado == data_atual:
-                print("Você já registrou o estudo de hoje.")
-            else:
-                dias_estudados += 1
-                historico_dias_estudados.append(data_atual)
-                print("Dias estudados:",dias_estudados)
-                ultimo_dia_estudado = data_atual
-        else:
-            print("Hoje é dia livre.")
-        
 
+        if data_atual in historico_dias_estudados:
+            print("Você já registrou o estudo de hoje.")
+        else:
+            historico_dias_estudados.append(data_atual)
+            print("Dias estudados:", len(historico_dias_estudados))
+        
     elif opcao == 2:
-        print("Você já estudou programação por:",dias_estudados,"dias.")
+        print("Você já estudou programação por:",len(historico_dias_estudados), "dias.")
 
 
     elif opcao == 3:
@@ -57,18 +46,18 @@ Dias estudados: 0
 
     elif opcao == 4:
 
-        print("Dias estudados:",dias_estudados)
+        print("Dias estudados:",len(historico_dias_estudados))
         for i in historico_dias_estudados:
             data_atual_formatada = i.strftime('%d/%m/%Y')
 
             print("Dia",data_atual_formatada,"✓")
 
-        subtracao_dias_estudados = meta - dias_estudados
+        subtracao_dias_estudados = meta - len(historico_dias_estudados)
         print(subtracao_dias_estudados,"/",meta)
 
     elif opcao == 5:
-        resto_meta = meta - dias_estudados
-        progresso = dias_estudados / 30
+        resto_meta = meta - len(historico_dias_estudados)
+        progresso = len(historico_dias_estudados) / 30
         progresso = progresso * 100
 
         print(f"""
@@ -76,12 +65,12 @@ Dias estudados: 0
         Meta: {meta}
 =============================F
 
-Dias estudados: {dias_estudados}
+Dias estudados: {len(historico_dias_estudados)}
 Faltam: {resto_meta}
 Progresso: {progresso}%
 """)
 
-        if dias_estudados >= meta:
+        if len(historico_dias_estudados) >= meta:
             print("Atigiu meta.")
         else:
             print("Faltam:",resto_meta,"dias.")
@@ -90,7 +79,7 @@ Progresso: {progresso}%
             if historico_dias_estudados == []:
                 print("Ainda não há estudos registrados.")
             else:
-                data_atual = datetime.date(2026, 9, 14)
+                data_atual = datetime.date.today()
 
                 sequencia = 0
 
@@ -131,4 +120,5 @@ Progresso: {progresso}%
 
     
         
+
 
