@@ -142,4 +142,24 @@ arquivo.write(data.strftime("%d/%m/%Y") + "\n")
 
 arquivo.close()
 
+# %%
+import datetime
+
+historico_dias_estudados = []
+
+arquivo = open("teste.txt", "r")
+
+linhas = arquivo.readlines()
+
+arquivo.close()
+
+for linha in linhas:
+    linha = linha.strip()
+
+    data = datetime.datetime.strptime(linha, "%d/%m/%Y").date()
+
+    historico_dias_estudados.append(data)
+
+print(historico_dias_estudados)
+
 
