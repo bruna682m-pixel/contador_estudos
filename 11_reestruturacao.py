@@ -87,6 +87,10 @@ Faltam: {meta - len(historico_dias_estudados)}
             historico_dias_estudados.append(data_atual)
             dias_meta += 1
 
+            arquivo_progresso = open("progresso_meta.txt", "w")
+            arquivo_progresso.white(str(dias_meta))
+            arquivo_progresso.close()
+
             print("Dias estudados:", len(historico_dias_estudados))
 
             arquivo = open("teste.txt", "a")
