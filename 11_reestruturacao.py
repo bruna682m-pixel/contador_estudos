@@ -69,7 +69,7 @@ while True:
 
 Ofensiva: {len(historico_dias_estudados)}
 Meta: {meta}
-Faltam: {meta - len(historico_dias_estudados)}
+Faltam: {max(meta - dias_meta, 0)}
 
 1- Registrar estudo
 2- Ver ofensiva
@@ -88,7 +88,7 @@ Faltam: {meta - len(historico_dias_estudados)}
             dias_meta += 1
 
             arquivo_progresso = open("progresso_meta.txt", "w")
-            arquivo_progresso.white(str(dias_meta))
+            arquivo_progresso.write(str(dias_meta))
             arquivo_progresso.close()
 
             print("Dias estudados:", len(historico_dias_estudados))
@@ -179,9 +179,13 @@ Progresso: {progresso:.1f}%
 
             dias_meta = 0
 
+            arquivo_progresso = open("progresso_meta.txt", "w")
+            arquivo_progresso.write(str(dias_meta))
+            arquivo_progresso.close()
+
             arquivo_meta = open("meta.txt", "w")
             arquivo_meta.write(str(meta))
-            arquivo_meta.close
+            arquivo_meta.close()
         else:
             print("Continue estudando!")
                 
