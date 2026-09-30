@@ -72,22 +72,19 @@ while True:
         while True:
             numero_semana = dia_anterior.isoweekday()
 
-            if numero_semana == 6 or numero_semana == 7:
-                if dia_anterior in historico_dias_estudados:
-                    ofensiva_atual += 1
-
+            if dia_anterior in historico_dias_estudados:
+                ofensiva_atual += 1
                 dia_anterior = dia_anterior + datetime.timedelta(days=-1)
 
+            elif numero_semana == 6 or numero_semana == 7:
+                dia_anterior = dia_anterior + datetime.timedelta(days=-1)
+            
             else:
-                if dia_anterior in historico_dias_estudados:
-                    ofensiva_atual += 1
-                    dia_anterior = dia_anterior + datetime.timedelta(days=-1)
-                else:
-                    break
+                break
 
     opcao = int(input(f"""
 ======================================
-         DIÀRIO DE PYTHON
+         DIÁRIO DE PYTHON
 ======================================
 
 Ofensiva: {ofensiva_atual}
@@ -126,34 +123,11 @@ Faltam: {max(meta - dias_meta, 0)}
     elif opcao == 2:
             print("ver ofensiva")
 
+
             if historico_dias_estudados == []:
                 print("Ainda não há estudos registrados.")
             else:
-                sequencia = 0
-
-                dia_anterior = data_atual + datetime.timedelta(days= -1)
-
-                if data_atual in historico_dias_estudados:
-                    sequencia += 1
-
-                while True:
-                    numero_semana = dia_anterior.isoweekday()
-
-                    if numero_semana == 6 or numero_semana == 7:
-                        if dia_anterior in historico_dias_estudados:
-                            sequencia +=1
-
-                        dia_anterior = dia_anterior + datetime.timedelta(days= -1)
-                    else:
-                        if dia_anterior in historico_dias_estudados:
-                            dia_anterior = dia_anterior + datetime.timedelta(days= -1)
-                            sequencia += 1
-                        else:
-                            break
-      
-                       
-        
-                print("Sequencia atual:",sequencia, "dia(s)")
+                print("Sequencia atual:", ofensiva_atual, "dia(s)")
 
     elif opcao == 3:
         print("Hístórico de estudos:")
@@ -217,7 +191,7 @@ Progresso: {progresso:.1f}%
         break 
                                     
     else:
-        print("Opção inavalida.")
+        print("Opção invalida.")
 
     
         
